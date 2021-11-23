@@ -1,2 +1,5 @@
 - Criar um module:
   nest g module <name>
+
+- Criar um controller
+  nest g controller <name>
