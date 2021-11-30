@@ -22,9 +22,7 @@ export class AllExceptionFilter implements ExceptionFilter {
         : HttpStatus.INTERNAL_SERVER_ERROR;
 
     const message =
-      exception instanceof HttpException
-        ? exception.getResponse()
-        : 'Ocorreu um error interno no servidor';
+      exception instanceof HttpException ? exception.getResponse() : exception;
 
     this.logger.error(
       `Http Status: ${status} Error Message: ${JSON.stringify(message)}`,
@@ -34,6 +32,7 @@ export class AllExceptionFilter implements ExceptionFilter {
       timestamps: new Date().toISOString(),
       path: request.url,
       error: message,
+      statusCode: status,
     });
   }
 }
